@@ -14,7 +14,7 @@ export class ProjectsService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>("/api/projects", { responseType: "json" })
+    return this.httpClient.get<Project[]>("http://localhost:3000/projects", { responseType: "json" })
     .pipe(map(
       (data: Project[]) => {
         for (let i = 0; i > data.length; i++)
@@ -27,18 +27,18 @@ export class ProjectsService {
   }
 
   insertProject(newProject: Project): Observable<Project> {
-    return this.httpClient.post<Project>("/api/projects", newProject, { responseType: "json" });
+    return this.httpClient.post<Project>("http://localhost:3000/projects", newProject, { responseType: "json" });
   }
 
   updateProject(existingProject: Project): Observable<Project> {
-    return this.httpClient.put<Project>("/api/projects", existingProject, { responseType: "json" });
+    return this.httpClient.put<Project>("http://localhost:3000/projects" + existingProject.projectID, existingProject, { responseType: "json" });
   }
 
   deleteProject(ProjectID: number): Observable<string> {
-    return this.httpClient.delete<string>("/api/projects?ProjectID=" + ProjectID);
+    return this.httpClient.delete<string>("http://localhost:3000/projects/" + ProjectID);
   }
 
   SearchProject(searchBy: string, searchText: string): Observable<Project[]> {
-    return this.httpClient.get<Project[]>("/api/projects/search/" + searchBy + "/" + searchText, { responseType: "json" });
+    return this.httpClient.get<Project[]>("http://localhost:3000/projects/search/" + searchBy + "/" + searchText, { responseType: "json" });
   }
 }
