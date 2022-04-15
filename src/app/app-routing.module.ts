@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './admin/about/about.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ProjectsComponent } from './admin/projects/projects.component';
+import { Routes, RouterModule } from '@angular/router';
+import { DashboardComponent } from "./admin/dashboard/dashboard.component";
+import { AboutComponent } from "./admin/about/about.component";
+import { ProjectsComponent } from "./admin/projects/projects.component";
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: "dashboard", component:DashboardComponent }, //create route modules
-  { path: "about", component:AboutComponent }, //create route modules
-  { path: "projects", component:ProjectsComponent },
-  { path: "", redirectTo: "dashboard", pathMatch: "full" }  //set the home page as dashboard
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "login", component: LoginComponent },
+  { path: "dashboard", component: DashboardComponent },
+  { path: "about", component: AboutComponent },
+  { path: "projects", component: ProjectsComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule
+{
+}
