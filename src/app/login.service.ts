@@ -23,6 +23,7 @@ export class LoginService
         if (user)
         {
           this.currentUserName = user.userName;
+          sessionStorage['currentUser'] = JSON.stringify(user);
         }
         return user;
       }));
@@ -30,6 +31,7 @@ export class LoginService
 
   public Logout()
   {
+    sessionStorage.removeItem("currentUser");
     this.currentUserName = null;
   }
 }
